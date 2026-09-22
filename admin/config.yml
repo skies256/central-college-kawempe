@@ -1,0 +1,53 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "images/uploads"
+public_folder: "/images/uploads"
+
+site_url: https://skies256.github.io/central-college-kawempe
+
+display_url: https://skies256.github.io/central-college-kawempe
+
+collections:
+  - name: settings
+    label: Site settings
+    files:
+      - label: School information
+        name: school
+        file: content/school.json
+        fields:
+          - { label: School name, name: name, widget: string }
+          - { label: Tagline, name: tagline, widget: string }
+          - { label: Logo, name: logo, widget: image, required: false }
+          - { label: Phone, name: phone, widget: string }
+          - { label: WhatsApp number, name: whatsapp, widget: string, hint: "Use international format without +, spaces or dashes. Example: 2567XXXXXXXX" }
+          - { label: Email, name: email, widget: string }
+          - { label: Address, name: address, widget: string }
+          - { label: Hero image, name: hero_image, widget: image, required: false }
+
+  - name: pages
+    label: Pages
+    folder: content/pages
+    create: true
+    slug: "{{slug}}"
+    format: json
+    extension: json
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Description, name: description, widget: text }
+      - { label: Hero image, name: hero_image, widget: image, required: false }
+      - { label: Body, name: body, widget: markdown }
+
+  - name: news
+    label: News and events
+    folder: content/news
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - { label: Title, name: title, widget: string }
+      - { label: Publish date, name: date, widget: datetime }
+      - { label: Category, name: category, widget: select, options: [Academic, Admissions, Events, Leadership, Community] }
+      - { label: Cover image, name: image, widget: image, required: false }
+      - { label: Summary, name: summary, widget: text }
+      - { label: Article, name: body, widget: markdown }
